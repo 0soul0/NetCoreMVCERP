@@ -16,11 +16,12 @@ namespace NetCoreMVCERP.Models.Data
 
                 for (int i = 0; i < 100; i++) {
                     employees.Add(
-                        new Employee() { 
-                            Id=i,
-                            Name="A"+i,
-                            Salary= new Random().Next(1, 100)*10000,
-                            Seniority = new Random().Next(1, 20)
+                        new Employee() {
+                            Id = i,
+                            Name = "A" + i,
+                            Salary = new Random().Next(1, 100) * 10000,
+                            Seniority = 0
+                           // Seniority = new Random().Next(1, 20)
                         });
                 }
                 return employees;
