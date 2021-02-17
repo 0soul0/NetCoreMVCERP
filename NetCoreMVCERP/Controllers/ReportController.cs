@@ -48,17 +48,16 @@ namespace NetCoreMVCERP.Controllers
 
             //匯入變數資料
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            //parameters.Add("rp1", "Employee Data");
-            //parameters.Add("rp2", "0");
-            //parameters.Add("rp3", "False");
-
-            //parameters.Add("rpL1", "aa");
+            parameters.Add("rp1", "公司");
+            parameters.Add("rp2", "員工資料");
+            parameters.Add("t1", "編號");
+            parameters.Add("t2", "名稱");
+            parameters.Add("t3", "年資");
+            parameters.Add("t4", "薪水");
             AspNetCore.Reporting.LocalReport local = new AspNetCore.Reporting.LocalReport(path);
 
-         local.AddDataSource("DataSet1", employees);
-            list = new List<CList>() { new CList() {Title="編號" } , new CList() { Title = "名稱" } , new CList() { Title = "薪水" }};
-            local.AddDataSource("DataSet2", list);
-            // local.AddDataSource
+            local.AddDataSource("DataSet1", employees);
+          
 
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             var result = local.Execute(RenderType.Pdf, extension, parameters, mintype);
@@ -80,8 +79,7 @@ namespace NetCoreMVCERP.Controllers
             //匯入變數資料
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("rp1", "Employee Data");
-            parameters.Add("rp2", "0");
-            parameters.Add("rp3", "False");
+            parameters.Add("rp2", "test");
             AspNetCore.Reporting.LocalReport local = new AspNetCore.Reporting.LocalReport(path);
             local.AddDataSource("DataSet1", employees);
             // local.AddDataSource
