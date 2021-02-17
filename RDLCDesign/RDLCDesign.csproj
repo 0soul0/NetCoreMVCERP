@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\CList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -64,7 +65,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report11.rdlc" />
+    <None Include="Properties\DataSources\RDLCDesign.Model.CEmployee.datasource" />
+    <None Include="Properties\DataSources\RDLCDesign.Model.CList.datasource" />
     <None Include="Properties\DataSources\RDLCDesign.Model.Employee.datasource" />
+    <None Include="Properties\DataSources\RDLCDesign.Model.Employee1.datasource" />
+    <None Include="Properties\DataSources\RDLCDesign.Model.List.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

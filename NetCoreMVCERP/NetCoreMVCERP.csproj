@@ -5,8 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\reports\Report11.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\reports\Report11.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="MvcReportViewer" Version="0.8.3" />
+    <PackageReference Include="ReportViewerForMvc4" Version="1.1.2" />
     <PackageReference Include="Stimulsoft.Reports.Wpf" Version="2020.5.2" />
     <PackageReference Include="System.CodeDom" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />

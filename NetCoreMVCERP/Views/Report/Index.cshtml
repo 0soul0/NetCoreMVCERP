@@ -4,10 +4,12 @@
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.23/b-1.6.5/datatables.min.css" />
 <h1>Index</h1>
 
-<a class="btn btn-success" asp-controller="Report" asp-action="Print">Print</a>
-<table id="myTable" class="display table">
+<a class="btn btn-success" asp-controller="Report" asp-action="Print">PreView</a>
+<a class="btn btn-success" asp-controller="Report" asp-action="Excel">Excel</a>
+<table id="myTable" class="display">
     <thead>
         <tr>
             <th>
@@ -49,7 +51,6 @@
         }
     </tbody>
 </table>
-
-<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.23/b-1.6.5/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" asp-append-version="true" defer></script>
 <script src="~/js/Report/report.js" asp-append-version="true"></script>

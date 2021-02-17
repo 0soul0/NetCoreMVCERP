@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace NetCoreMVCERP.Models
+namespace RDLCNet
 {
     public class Employee
     {
@@ -12,8 +10,5 @@ namespace NetCoreMVCERP.Models
         public double Salary { get; set; }
         public int Seniority { get; set; }
         public string Name { get; set; }
-
-        public string Test { get; set; }
-        public List<string> Title { get; set; }
     }
 }

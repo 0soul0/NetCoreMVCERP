@@ -20,9 +20,10 @@ namespace NetCoreMVCERP.Models.Data
                             Id = i,
                             Name = "A" + i,
                             Salary = new Random().Next(1, 100) * 10000,
-                            Seniority = 0
-                           // Seniority = new Random().Next(1, 20)
-                        });
+                            Seniority =i%3==0?0:1,
+                            //Seniority = new Random().Next(1, 20)
+                            //Title=new List<string>() {"編號","名稱","薪水" }
+                        });;
                 }
                 return employees;
             }
