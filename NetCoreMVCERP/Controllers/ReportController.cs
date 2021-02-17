@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Reporting.WebForms;
 using MvcReportViewer;
+using NetCoreMVCERP.Api.Io;
 using NetCoreMVCERP.Models;
 using NetCoreMVCERP.Models.Data;
 using System;
@@ -36,7 +37,8 @@ namespace NetCoreMVCERP.Controllers
         /// 列印報表
         /// </summary>
         /// <returns></returns>
-        public IActionResult Print() {
+        public IActionResult Print()
+        {
 
             var dt = new DataTable();
 
@@ -57,67 +59,33 @@ namespace NetCoreMVCERP.Controllers
             AspNetCore.Reporting.LocalReport local = new AspNetCore.Reporting.LocalReport(path);
 
             local.AddDataSource("DataSet1", employees);
-          
+
 
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             var result = local.Execute(RenderType.Pdf, extension, parameters, mintype);
-            
+
             //return result;
             return File(result.MainStream, "application/pdf");
         }
 
-        public IActionResult Excel() {
+        public IActionResult Excel()
+        {
+            List<List<string[]>> title = new List<List<string[]>>();
+            title.Add(new List<string[]>() { new string[2] {"XX公司","@"} });
+            title.Add(new List<string[]>() { new string[2] { "員工", "@" } });
+            title.Add(new List<string[]>() { 
+                new string[2] { "部門", "@" },
+            new string[2] { "人事部", "@" }});
 
-            var dt = new DataTable();
+            var dto=DataToExcel.DataToExcelDataType(employees, title, new string[]
+            { nameof(Employee.Id),
+                nameof(Employee.Name),
+                nameof(Employee.Salary),
+                nameof(Employee.Seniority),
+                nameof(Employee.Currency)});
 
-            string mintype = "10";
-            int extension = 0;
-
-            //報表模板位置 NetCoreMVCERP\wwwroot\Reports\Report1.rdlc
-            var path = $"{_webHostEnvironment.WebRootPath}\\reports\\Report11.rdlc";
-
-            //匯入變數資料
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("rp1", "Employee Data");
-            parameters.Add("rp2", "test");
-            AspNetCore.Reporting.LocalReport local = new AspNetCore.Reporting.LocalReport(path);
-            local.AddDataSource("DataSet1", employees);
-            // local.AddDataSource
-
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            var result = local.Execute(RenderType.Excel, extension, parameters, mintype);
-
-            //return result;
-            //return File(result.MainStream, "application/vnd.ms-excel", "Export.xlsx");
-            return File(result.MainStream, "application/msexcel", "Export.xlsx");
-            //"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            return DataToExcel.ToExcel(this, dto, "XX公司-員工表", "員工表");
         }
 
-
-
-        //public IActionResult PrintNetCore() {
-        //    LocalReport report = new LocalReport();
-        //    report.LoadReportDefinition($"{_webHostEnvironment.WebRootPath}\\reports\\Report1.rdlc");
-        //    report.DataSources.Add(new ReportDataSource("source", dataSource));
-        //    report.SetParameters(new[] { new ReportParameter("Parameter1", "Parameter value") });
-        //    byte[] pdf = report.Render("PDF");
-
-        //}
-
-        //public IActionResult PrintHtml() {
-
-        //    //ReportViewer reportViewer = new ReportViewer();
-        //    //reportViewer.ProcessingMode = ProcessingMode.Local;
-        //    //reportViewer.LocalReport.ReportPath = $"{_webHostEnvironment.WebRootPath}\\reports\\Report1.rdlc";
-        //    ////reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", employees));
-        //    //return View(reportViewer);
-
-        //    var model = GetReportViewerModel(Request);
-        //    model.ReportPath = "/Folder/Report File Name";
-        //    model.AddParameter("Parameter1", namedParameter1);
-        //    model.AddParameter("Parameter2", namedParameter2);
-
-        //    return View("ReportViewer", model);
-        //}
     }
 }
