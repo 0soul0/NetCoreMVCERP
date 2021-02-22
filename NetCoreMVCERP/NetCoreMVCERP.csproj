@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="MvcReportViewer" Version="0.8.3" />
+    <PackageReference Include="PdfiumViewer.Core" Version="1.0.4" />
     <PackageReference Include="ReportViewerForMvc4" Version="1.1.2" />
     <PackageReference Include="Stimulsoft.Reports.Wpf" Version="2020.5.2" />
     <PackageReference Include="System.CodeDom" Version="5.0.0" />
@@ -31,6 +32,10 @@
     <Content Update="wwwroot\reports\Report1.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\files\UploadAndDownloadFile\2021\1\" />
   </ItemGroup>
 
 </Project>

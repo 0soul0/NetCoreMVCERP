@@ -1,0 +1,67 @@
+﻿@model List<NetCoreMVCERP.Models.FileData>
+@{
+}
+<style>
+    .img-max-size {
+        max-width: 200px;
+        max-height: 150px;
+    }
+
+</style>
+
+
+<div>
+    <input class="upload-file" type="file" value="updateData" />
+    <button class="btn btn-success" onclick="uploadFile('@Url.Action("UploadFile")')">save</button>
+</div>
+
+<ul class="col" style="list-style-type: none;">
+    @foreach (var file in Model)
+    {
+    <li class="d-inline-block text-center">
+        @if (file.Type.Equals(".jpg") || file.Type.Equals(".jpeg") || file.Type.Equals(".png"))
+        {
+            <img src ="@("~/" + file.Route)" asp-append-version="true"  alt="Can't Read" class="img-max-size rounded img-modal p-1" />
+        }
+        else
+        {
+            <img src="~/image/file.png" asp-append-version="true" class="img-max-size rounded img-modal p-1" />
+        }
+        <p>@file.Type</p>
+        <br>
+        <a asp-action="DownloadFile" asp-route-path="@(file.Route)">download</a>
+    </li>
+
+    }
+</ul>
+
+
+@section Scripts {
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+    <script>
+        /**
+         * upload file
+         * param urli address
+         */
+        const uploadFile = (urli) => {
+            let fileData = new FormData();
+            fileData.append("File", $(".upload-file").get(0).files[0])
+            $.ajax({
+                type: "post",
+                url: urli,
+                processData: false, // 告訴jQuery不要去處理發送的數據
+                contentType: false, // 告訴jQuery不要去設置Content-Type請求頭
+                headers: {
+                    "RequestVerificationToken": $('#RequestVerificationToken').val()
+                },
+                data: fileData,
+                success: function (data) {
+                    alert(data)
+                    if (data === "success") {
+                        location.href = location.href;
+                    }
+                }
+            });
+        }
+    </script>
+}

@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,7 +15,9 @@
     <title>@ViewData["Title"] - NetCoreMVCERP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+    @* token值 *@
+    <input type="hidden" id="RequestVerificationToken"
+           name="__RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
 </head>
 <body>
     <header>
