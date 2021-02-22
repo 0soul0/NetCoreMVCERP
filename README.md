@@ -14,4 +14,4 @@
     . . .a.Build Action=>Content Copy to Output </br>
     . . .b.Directory=>Copy always</br>
     6. coding in Controller\ReportController\Print
-    
+  <h3>2021/2/22 新增上傳下載檔案(docx、txt、pdf、xlsx、xls、jpg、jpeg、gif等)</h3>
